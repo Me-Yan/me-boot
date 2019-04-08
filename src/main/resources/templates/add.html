@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="head :: head"></th:block>
+    <title>添加用户</title>
+</head>
+<body>
+
+<div class="main">
+    <form th:action="@{/user/insert}" th:object="${userForm}" method="post">
+        <div><input type="text" th:field="*{username}"></div>
+        <div><input type="text" th:field="*{age}"></div>
+        <div>
+            <select th:field="*{sex}">
+                <option value="">- 选择性别 -</option>
+                <option value="0">女</option>
+                <option value="1">男</option>
+            </select>
+        </div>
+        <div><input type="text" th:field="*{address}"></div>
+        <div><input type="submit" value="提交"></div>
+    </form>
+</div>
+<div class="main">
+    <a th:href="@{/user/list}">列表</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="head :: head"></th:block>
+    <title>用户列表</title>
+</head>
+<body>
+
+<div class="main">
+    <ul>
+        <th:block th:if="${not #lists.isEmpty(userList)}">
+            <ul>
+                <li th:each="user : ${userList}">
+                    <div class="inline-block" th:text="${user.id}"></div>
+                    <div class="inline-block" th:text="${user.username}"></div>
+                    <div class="inline-block" th:text="${user.age}"></div>
+                    <th:block th:switch="${user.sex}">
+                        <div class="inline-block" th:case="0" th:text="女"></div>
+                        <div class="inline-block" th:case="1" th:text="男"></div>
+                    </th:block>
+                    <div class="inline-block" th:text="${user.address}"></div>
+                    <div class="inline-block" th:text="${#dates.format(user.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </li>
+            </ul>
+        </th:block>
+        <th:block th:if="${#lists.isEmpty(userList)}">
+            <ul style="text-align: center;">
+                <li>用户记录不存在！</li>
+            </ul>
+        </th:block>
+    </ul>
+</div>
+<div class="main">
+    <a th:href="@{/user/add}">添加</a>
+</div>
+
+</body>
+</html>
